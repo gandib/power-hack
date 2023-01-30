@@ -1,23 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+import { Route, Routes } from 'react-router-dom';
+import Billing from './Pages/Billing';
+import { Toaster } from 'react-hot-toast';
+import UpdateBilling from './Pages/UpdateBilling';
+import Signup from './Pages/Signup';
+import Login from './Pages/Login';
+
 
 function App() {
+  const userToken = localStorage.getItem('accessToken');
+  console.log(userToken);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Toaster />
+      <Routes>
+        <Route path='/' element={userToken ? <Billing /> : <Login />}></Route>
+        <Route path='/update-billing/:id' element={userToken ? <UpdateBilling /> : <Login />}></Route>
+        <Route path='/signup' element={<Signup />}></Route>
+        <Route path='/login' element={<Login />}></Route>
+      </Routes>
     </div>
   );
 }
