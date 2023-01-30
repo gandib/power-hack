@@ -9,7 +9,7 @@ const UpdateBilling = () => {
 
     const onSubmit = async (data) => {
         console.log(data)
-        const url = `http://localhost:5000/api/update-billing/${id}`;
+        const url = `https://power-hack-server-orcin.vercel.app/api/update-billing/${id}`;
         fetch(url, {
             method: 'PUT',
             headers: {

@@ -5,6 +5,7 @@ import { Toaster } from 'react-hot-toast';
 import UpdateBilling from './Pages/UpdateBilling';
 import Signup from './Pages/Signup';
 import Login from './Pages/Login';
+import RequireAuth from './components/RequireAuth';
 
 
 function App() {
@@ -14,8 +15,10 @@ function App() {
     <div className="App">
       <Toaster />
       <Routes>
-        <Route path='/' element={userToken ? <Billing /> : <Login />}></Route>
-        <Route path='/update-billing/:id' element={userToken ? <UpdateBilling /> : <Login />}></Route>
+        <Route path='/' element={<RequireAuth>
+          <Billing />
+        </RequireAuth>}></Route>
+        <Route path='/update-billing/:id' element={<RequireAuth><UpdateBilling /></RequireAuth>}></Route>
         <Route path='/signup' element={<Signup />}></Route>
         <Route path='/login' element={<Login />}></Route>
       </Routes>
